@@ -29,7 +29,12 @@ const replacements = [
     // ===========================
     { search: /Need Dental Serviços\?/g, replace: 'Precisa de Atendimento?' },
     { search: /Need Dental Services\?/g, replace: 'Precisa de Atendimento?' },
-    { search: /Call: \(34\) 3312-3298/g, replace: 'Tel: (34) 3312-3298' },
+    { search: /Horário de Funcionamento/g, replace: 'Horário de Funcionamento' },
+    { search: /Seg a Sáb 08:00 - 20:00/g, replace: 'Seg a Sex 09:00-12:00 / 14:00-19:00 | Sáb 08:00-12:00' },
+    { search: /Mon to Sat 08:00 - 20:00/g, replace: 'Seg a Sex 09:00-12:00 / 14:00-19:00 | Sáb 08:00-12:00' },
+    { search: /Monday - Friday 08.00 - 18.00/g, replace: 'Seg a Sex 09:00-12:00 / 14:00-19:00 | Sáb 08:00-12:00' },
+    { search: /Seg a Sex 09:00 - 12:00 e 14:00 - 19:00/g, replace: 'Seg a Sex 09:00-12:00 / 14:00-19:00 | Sáb 08:00-12:00' },
+    { search: /Tel: \(34\) 3312-3298/g, replace: 'Tel: (34) 3312-3298' },
     { search: /All Serviços/g, replace: 'Todos os Serviços' },
     { search: /All Services/g, replace: 'Todos os Serviços' },
     { search: /Send a Message/g, replace: 'Envie uma Mensagem' },
@@ -50,7 +55,20 @@ const replacements = [
     { search: /Modern tools ensure accurate and efficient treatments\./g, replace: 'Equipamentos modernos garantem tratamentos precisos e eficientes.' },
     { search: /Custom care plans made to fit your smile and lifestyle\./g, replace: 'Planos de cuidado personalizados para o seu sorriso e estilo de vida.' },
     { search: /Welcoming space for kids, teens, adults, and seniors\./g, replace: 'Ambiente acolhedor para crianças, adolescentes, adultos e idosos.' },
+    { search: /<h4>Clínica Geral<\/h4>/g, replace: '<h4>Ortodontia!</h4>' },
+    { search: /<p>Cuidado bucal completo com limpezas, exames e muito mais\.<\/p>/g, replace: '<p>Sorriso alinhado com tecnologia de ponta e aparelhos modernos.</p>' },
+    
+    { search: /<h4>Procedimentos Estéticos<\/h4>/g, replace: '<h4>Alinhadores</h4>' },
+    { search: /<p>Realce a beleza do seu sorriso com clareamento, facetas e muito mais\.<\/p>/g, replace: '<p>A solução invisível e confortável para alinhar seus dentes.</p>' },
+    
+    { search: /<h4>Pediatria<\/h4>/g, replace: '<h4>Lentes de Contato (Resina)</h4>' },
+    { search: /<p>Cuidado odontológico gentil e divertido para crianças crescerem com sorrisos saudáveis\.<\/p>/g, replace: '<p>Transforme sua estética dental com agilidade, beleza e alta resistência.</p>' },
+    
+    { search: /<h4>Reabilitação Médica<\/h4>/g, replace: '<h4>Lentes de Contato (Porcelana)</h4>' },
+    { search: /<p>Repare e restaure seus dentes para conforto e função duradouros\.<\/p>/g, replace: '<p>O ápice da estética dental com durabilidade e perfeição natural.</p>' },
+
     { search: /Our experienced dental team is here to make every visit positive and personalized\. With gentle hands and caring hearts\./g, replace: 'Nossa experiente equipe está aqui para tornar cada visita positiva e personalizada. Com mãos habilidosas e coração acolhedor.' },
+
     { search: /Join thousands of happy patients who trust us for gentle, expert care and beautiful smiles\. Your perfect dental experience starts here!/g, replace: 'Junte-se a dezenas de pacientes felizes que confiam em nós para um cuidado especializado e sorriso bonito. Sua experiência perfeita começa aqui!' },
     { search: /How often should I visit the dentist\?/g, replace: 'Com que frequência devo visitar o dentista?' },
     { search: /It's recommended to see your dentist every 6 months for a routine check-up and cleaning, unless advised otherwise\./g, replace: 'Recomenda-se visitar o dentista a cada 6 meses para check-up de rotina e limpeza, salvo orientação contrária.' },
@@ -78,6 +96,79 @@ const replacements = [
     // Subheader / breadcrumbs
     { search: /Back to home/g, replace: 'Voltar ao Início' },
     { search: /You are here/g, replace: 'Você está em' },
+
+    // Additional missing translations
+    { search: /From routine cleanings to advanced restorations, we provide personalized dental solutions for patients of all ages\./g, replace: 'Desde limpezas de rotina a restaurações avançadas, oferecemos soluções personalizadas para pacientes de todas as idades.' },
+    { search: /Enhance your smile[’']s beauty with whitening, veneers, and more\./g, replace: 'Realce a beleza do seu sorriso com clareamento, facetas e muito mais.' },
+    { search: /Advanced Technology/g, replace: 'Tecnologia Avançada' },
+    { search: /Personalized Treatment/g, replace: 'Tratamento Personalizado' },
+    { search: /It[’']s recommended to see your dentist every 6 months for a routine check-up and cleaning, unless advised otherwise\./g, replace: 'Recomenda-se visitar seu dentista a cada 6 meses para check-up e limpeza de rotina, salvo outra orientação.' },
+    
+    // Testimonials
+    { search: /"I[’']ve always been nervous about dental visits, but the staff made me feel completely comfortable\. Their gentle care and attention to detail truly stand out\."/g, replace: '"Sempre tive receio de ir ao dentista, mas a equipe me deixou completamente à vontade. O cuidado gentil e a atenção aos detalhes são excepcionais."' },
+    { search: /"My family and I have been coming here for years\. The service is exceptional, and the team always goes the extra mile to make sure we[’']re happy and well taken care of\."/g, replace: '"Minha família e eu viemos aqui há anos. O serviço é excepcional e a equipe sempre faz o máximo para garantir que estejamos felizes e bem cuidados."' },
+    { search: /"I came in for a whitening treatment and left with a brand new level of confidence\. The results were amazing, and the staff made it such a relaxing experience\."/g, replace: '"Vim para um clareamento e saí com uma confiança renovada. Os resultados foram incríveis e a equipe tornou a experiência muito relaxante."' },
+    { search: /"They[’']re professional, friendly, and genuinely care about your dental health\. I trust them completely and recommend them to anyone looking for great care\."/g, replace: '"Eles são profissionais, amigáveis e realmente se preocupam com sua saúde bucal. Confio plenamente neles e os recomenda a todos."' },
+    { search: /"Hands down the best dental experience I[’']ve ever had\. Everything from scheduling to treatment was smooth, comfortable, and handled with a personal touch\."/g, replace: '"Sem dúvida a melhor experiência odontológica que já tive. Tudo, do agendamento ao tratamento, foi tranquilo, confortável e humanizado."' },
+    { search: /"I[’']ve never felt more comfortable at a dentist[’']s office\. The team is so kind, professional, and thorough\. They always explain everything in detail, and I leave with a smile every time!"/g, replace: '"Nunca me senti tão confortável em um dentista. A equipe é muito gentil e profissional. Eles sempre explicam tudo detalhadamente e saio sempre com um sorriso!"' },
+    { search: /"My experience here has been wonderful! The staff is friendly, the office is spotless, and the care is top-notch\. I always feel relaxed, and my teeth have never looked better!"/g, replace: '"Minha experiência aqui tem sido maravilhosa! A equipe é amigável, o consultório é impecável e o cuidado é de primeira linha. Me sinto sempre relaxado."' },
+    { search: /"From the moment I walked in, I felt at ease\. The staff made me feel like family, and the care I received was exceptional\. I[’']m so happy with my smile—thank you for everything!"/g, replace: '"Desde o momento em que entrei, me senti à vontade. A equipe me fez sentir em família e o atendimento foi excepcional. Estou muito feliz com meu sorriso!"' },
+
+    // Misc
+    { search: /Read More/g, replace: 'Leia Mais' },
+    { search: /View Details/g, replace: 'Ver Detalhes' },
+    { search: /Our Blog/g, replace: 'Nosso Blog' },
+    { search: /Latest News/g, replace: 'Últimas Notícias' },
+    { search: /Book Appointment/g, replace: 'Agendar Consulta' },
+    { search: /Dental Care/g, replace: 'Cuidado Odontológico' },
+    { search: /Family Dental/g, replace: 'Odontologia Familiar' },
+    { search: /Emergency Service/g, replace: 'Atendimento de Emergência' },
+    { search: /Terms &amp; Conditions/g, replace: 'Termos e Condições' },
+    { search: /Privacy Policy/g, replace: 'Política de Privacidade' },
+    { search: /Follow Us/g, replace: 'Siga-nos' },
+    { search: /About Us/g, replace: 'Sobre Nós' },
+    { search: /Gallery/g, replace: 'Galeria' },
+    { search: /Testimonials/g, replace: 'Depoimentos' },
+    { search: /Contact/g, replace: 'Contato' },
+    { search: /Iníciopage/g, replace: 'Página Inicial' },
+    { search: /New: Página Inicial 9/g, replace: 'Nova: Página Inicial 9' },
+
+    // Booking Page
+    { search: /Thank You For Your Order/g, replace: 'Obrigado pelo seu Pedido' },
+    { search: /We have received your request and will be processing it shortly\. Click button below if you want to make another order\./g, replace: 'Recebemos sua solicitação e entraremos em contato em breve. Clique no botão abaixo se desejar fazer outro agendamento.' },
+    { search: /Re-order/g, replace: 'Novo Agendamento' },
+    { search: /Book Your Appointment/g, replace: 'Agende sua Consulta' },
+    { search: /Book your appointment today for expert dental care tailored to your needs\. Healthy, beautiful smiles start with a simple step, schedule now!/g, replace: 'Agende sua consulta hoje para um atendimento especializado e personalizado. Sorrisos saudáveis e bonitos começam com um simples passo, agende agora!' },
+    { search: /placeholder="Name"/g, replace: 'placeholder="Nome"' },
+    { search: /placeholder="Email"/g, replace: 'placeholder="E-mail"' },
+    { search: /placeholder="Phone"/g, replace: 'placeholder="Telefone"' },
+    { search: /placeholder="Message"/g, replace: 'placeholder="Mensagem"' },
+    { search: /value=['"]Send Appointment['"]/g, replace: 'value="Agendar Consulta"' },
+    { search: /Sorry there was an error sending your form\./g, replace: 'Desculpe, houve um erro ao enviar seu formulário.' },
+
+    // Contact Page
+    { search: /Contato Us/g, replace: 'Contato' },
+    { search: /Get In Touch/g, replace: 'Entre em Contato' },
+    { search: /We are always ready to help you and answer your questions/g, replace: 'Estamos sempre prontos para ajudar e responder às suas perguntas' },
+    { search: /Whether you have a question, a suggestion, or just want to say hello, this is the place to do it\. Please fill out the form below with your details and message, and we'll get back to you as soon as possible\./g, replace: 'Se você tiver uma pergunta, sugestão ou apenas quiser dizer olá, este é o lugar. Preencha o formulário abaixo e entraremos em contato o mais breve possível.' },
+    { search: /We're Open/g, replace: 'Estamos Abertos' },
+    { search: /Ligue para Nós Directly/g, replace: 'Ligue Diretamente' },
+    { search: /value=['"]Send Message['"]/g, replace: 'value="Enviar Mensagem"' },
+    { search: /Your message has been sent successfully\. Refresh this page if you want to send more messages\./g, replace: 'Sua mensagem foi enviada com sucesso. Recarregue a página se desejar enviar mais mensagens.' },
+    
+    // Global Labels
+    { search: />Home</g, replace: '>Início<' },
+    { search: />About Us</g, replace: '>Sobre Nós<' },
+    { search: />Services</g, replace: '>Serviços<' },
+    { search: />Dentists</g, replace: '>Corpo Clínico<' },
+    { search: />Pages</g, replace: '>Páginas<' },
+    { search: />Contact</g, replace: '>Contato<' },
+    { search: />Blog</g, replace: '>Blog<' },
+    { search: />Gallery</g, replace: '>Galeria<' },
+    { search: />Testimonials</g, replace: '>Depoimentos<' },
+    { search: />FAQ</g, replace: '>Perguntas Frequentes<' },
+
+
 ];
 
 for (const file of files) {
