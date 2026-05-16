@@ -27,6 +27,8 @@ const replacements = [
     // ===========================
     // TEXTOS EM INGLÊS RESTANTES
     // ===========================
+    { search: /href="booking\.html"/g, replace: 'href="https://wa.me/5534992007248?text=Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank"' },
+    { search: /href="contact\.html"/g, replace: 'href="https://wa.me/5534992007248?text=Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o" target="_blank"' },
     { search: /Need Dental Serviços\?/g, replace: 'Precisa de Atendimento?' },
     { search: /Need Dental Services\?/g, replace: 'Precisa de Atendimento?' },
     { search: /Horário de Funcionamento/g, replace: 'Horário de Funcionamento' },
