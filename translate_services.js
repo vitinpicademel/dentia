@@ -1,6 +1,38 @@
 const fs = require('fs');
 
 const replacements = [
+    // ---- Cosméticos - texto principal ----
+    { search: /Enhancing Your Smile with Art and Precision/g, replace: 'Realçando Seu Sorriso com Arte e Precisão' },
+    { search: /We believe your smile is your best accessory\. Our cosmetic dentistry services are designed to improve the appearance of your teeth, gums, and overall smile—boosting your confidence and helping you look your best\./g, replace: 'Acreditamos que seu sorriso é seu melhor acessório. Nossos serviços de odontologia estética são projetados para melhorar a aparência dos seus dentes, gengivas e sorriso — aumentando sua confiança e ajudando você a se sentir no seu melhor.' },
+    { search: /Your natural beauty begins with a confident smile/g, replace: 'Sua beleza natural começa com um sorriso confiante' },
+    { search: /Why Choose Our Cosmetic Dental Serviços\?/g, replace: 'Por que Escolher Nossa Odontologia Estética?' },
+    { search: /Experienced cosmetic dentists with an eye for detail and artistry/g, replace: 'Dentistas estéticos experientes com olhar apurado para detalhes e arte' },
+    { search: /Advanced technology, including digital smile design and mock-up previews/g, replace: 'Tecnologia avançada, incluindo design digital do sorriso e prévias de simulação' },
+    { search: /Customized treatment plans tailored to your aesthetic goals and lifestyle/g, replace: 'Planos de tratamento personalizados de acordo com seus objetivos estéticos e estilo de vida' },
+    { search: /Gentle techniques with a focus on patient comfort and minimal discomfort/g, replace: 'Técnicas delicadas com foco no conforto do paciente e mínimo desconforto' },
+    { search: /Natural-looking results that enhance your facial features and confidence/g, replace: 'Resultados naturais que realçam suas características faciais e sua confiança' },
+    { search: /Comprehensive smile solutions—from simple touch-ups to full makeovers/g, replace: 'Soluções completas para o sorriso — desde retoques simples até transformações totais' },
+    { search: /Clean, modern clinic environment with a warm and welcoming team/g, replace: 'Ambiente clínico limpo e moderno com uma equipe calorosa e acolhedora' },
+    // ---- Cosméticos - cards de tratamentos ----
+    { search: /Cosmetic Treatments We Offer/g, replace: 'Tratamentos Estéticos que Oferecemos' },
+    { search: /Brighten your smile safely with professional whitening that works in just one visit\./g, replace: 'Ilumine seu sorriso com segurança com o clareamento profissional que funciona em apenas uma visita.' },
+    { search: /Ultra-thin porcelain shells that cover imperfections and create a flawless smile\./g, replace: 'Capas ultra-finas de porcelana que cobrem imperfeições e criam um sorriso impecável.' },
+    { search: /Cosmetic Bonding/g, replace: 'Restauração Estética em Resina' },
+    { search: /An affordable way to repair chips, cracks, and small gaps using tooth-colored resin\./g, replace: 'Uma forma acessível de reparar lascas, rachaduras e pequenos espaços usando resina na cor do dente.' },
+    { search: /A customized combination of treatments to fully transform and enhance your smile\./g, replace: 'Uma combinação personalizada de tratamentos para transformar e realçar completamente o seu sorriso.' },
+    { search: /Tooth Contouring/g, replace: 'Escultura Dental' },
+    { search: /Refine tooth shape and smooth rough edges for a more symmetrical, balanced smile\./g, replace: 'Refine o formato dos dentes e suavize bordas irregulares para um sorriso mais simétrico e equilibrado.' },
+    { search: /Reshape your gum line to correct a gummy smile and improve symmetry\./g, replace: 'Remodele sua linha gengival para corrigir um sorriso gengival e melhorar a simetria.' },
+    { search: /Invisalign &amp; Alinhadores Transparentes/g, replace: 'Invisalign e Alinhadores Transparentes' },
+    { search: /Straighten teeth discreetly with clear aligners—no brackets or wires needed\./g, replace: 'Alinhe os dentes discretamente com alinhadores transparentes — sem braquetes ou fios.' },
+    { search: /Metal-Free Crowns/g, replace: 'Coroas Sem Metal' },
+    { search: /Restore damaged teeth with all-ceramic crowns that blend seamlessly with your smile\./g, replace: 'Restaure dentes danificados com coroas totalmente cerâmicas que se integram perfeitamente ao seu sorriso.' },
+    // ---- Cosméticos - depoimentos ----
+    { search: /I never thought I'd love my smile this much\. The veneers look so natural, and the process was surprisingly comfortable\. I finally feel confident in every photo!/g, replace: 'Nunca pensei que amaria tanto meu sorriso. As facetas ficaram tão naturais e o processo foi surpreendentemente confortável. Finalmente me sinto confiante em todas as fotos!' },
+    { search: /The team took the time to listen to what I wanted and made it happen\. My whitening results were incredible, and I get compliments all the time\. I actually enjoy going to the dentist now!/g, replace: 'A equipe se dedicou a ouvir o que eu queria e realizou. Meu resultado de clareamento foi incrível, e recebo elogios o tempo todo. Agora eu realmente curto ir ao dentista!' },
+    { search: /From start to finish, I felt completely taken care of\. My smile makeover was life-changing\. I can't stop smiling—literally!/g, replace: 'Do início ao fim, me senti completamente cuidada. A transformação do meu sorriso mudou minha vida. Não consigo parar de sorrir — literalmente!' },
+    { search: /I was always self-conscious about my teeth\. After my bonding and reshaping, it's like I have a brand-new smile\. Quick, painless, and totally worth it\./g, replace: 'Sempre tive vergonha dos meus dentes. Após a restauração e escultura dental, parece que tenho um sorriso novo. Rápido, indolor e totalmente válido.' },
+    { search: /The results exceeded my expectations\. The cosmetic work looks so natural, and the staff was supportive every step of the way\./g, replace: 'Os resultados superaram minhas expectativas. O trabalho estético ficou tão natural, e a equipe foi um suporte em cada etapa do caminho.' },
     // ---- Títulos e subtítulos das páginas de serviços ----
     { search: /Comprehensive Oral Care for Every Stage of Life/g, replace: 'Cuidado Bucal Completo para Cada Fase da Vida' },
     { search: /Our general dentistry services focus on the prevention, diagnosis, and treatment of a wide range of oral health issues\. Whether you're coming in for a routine check-up or seeking relief from dental pain, our experienced team is here to help you maintain a healthy, confident smile\./g, replace: 'Nossos serviços de clínica geral focam na prevenção, diagnóstico e tratamento de uma ampla gama de problemas bucais. Seja para um check-up de rotina ou para alívio de dores, nossa equipe experiente está aqui para ajudá-lo a manter um sorriso saudável e confiante.' },
